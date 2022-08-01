@@ -11,6 +11,20 @@
     justify-content: center;
     align-items: center;
 }
+#scoreBox{
+    position: absolute;
+    top: 9px;
+    right: 200px;
+    font-size: 30px;
+    font-weight: bold;
+}
+#highscoreBox{
+    position: absolute;
+    top: 59px;
+    right: 140px;
+    font-size: 30px;
+    font-weight: bold;
+}
 #board{
     background:linear-gradient(rgb(255, 255, 18),rgb(255, 119, 0));
     width: 90vmin;
@@ -24,12 +38,14 @@
 .head{
     background-color: rgb(25, 123, 210);
     border-radius: 50px;
+    transform: scale(1.02);
 }
 .snake{
     background-color: white;
     border-radius: 50px;
 }
 .food{
-    background-color: rgb(77, 67, 67);
+    background: linear-gradient(rgb(25, 123, 210),white);
     border-radius: 50px;
+    
 }

@@ -24,16 +24,16 @@ function main(ctime){
 }
 function isCollide(snake){
     // if you bump into your self
-    for(let index =1;index<snakeArr.length;i++){
+    for(let index =1;index<snakeArr.length;index++){
         if(snake[index].x===snake[0].x && snake[index].y===snake[0].y){
             return true;
         }
     }
     // if you crash with the wall
-    if(snake[0].x >=20 || snake[0].x <=0 && snake[0].y >=20 || snake[0].y <=0){
+    if(snake[0].x >=20 || snake[0].x <=0 || snake[0].y >=20 || snake[0].y <=0){
         return true;
     }
-
+   return false;
 }
 function gameEngine(){
     // part 1: Updating the snake array & food
@@ -49,6 +49,13 @@ function gameEngine(){
     // if you have eaten the food increment the score and regenerate the food
     if(snakeArr[0].y === food.y && snakeArr[0].x === food.x){
         // foodSound.play()
+        score +=1;
+        if(score>highscore){
+            highscoreval = score;
+            localStorage.setItem('highscore',JSON.stringify(highscoreval));
+            highscoreBox.innerHTML = 'highscore: '+highscoreval;
+        }
+        scoreBox.innerHTML = "score: "+score;
         snakeArr.unshift({x:snakeArr[0].x+inputDir.x, y:snakeArr[0].y+inputDir.y});
         let a = 2;
         let b =17;
@@ -85,6 +92,15 @@ function gameEngine(){
 
 
 // Main logic starts here
+let highscore = localStorage.getItem("highscore")
+if(highscore === null){
+    highscoreval =0;
+    localStorage.setItem('highscore',JSON.stringify(highscoreval));
+}
+else{
+    highscoreval = JSON.parse(highscore);
+    highscoreBox.innerHTML = 'highscore: '+highscoreval;
+}
 window.requestAnimationFrame(main);
 window.addEventListener('keydown',e=>{
     inputDir = {x:0,y:1} //start the game
